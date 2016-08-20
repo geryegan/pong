@@ -2,6 +2,8 @@ var canvas;
 var canvasContext;
 var ballX = 50;
 var ballSpeedX = 5;
+var ballY = 10;
+var ballSpeedY = 4;
 
 window.onload = function(){
 	console.log("Asuh, World")
@@ -19,11 +21,20 @@ window.onload = function(){
 
 function moveEverything(){
 	ballX = ballX + ballSpeedX;
-	if (ballX === canvas.width){
+	ballY = ballY + ballSpeedY;
+	//Horizontal movement
+	if (ballX > canvas.width){
 		ballSpeedX=-ballSpeedX;
 	}
 	if (ballX < 0){
 		ballSpeedX=-ballSpeedX;
+	}
+	//Vertical movement
+	if (ballY > canvas.height){
+		ballSpeedY=-ballSpeedY;
+	}
+	if (ballY < 0){
+		ballSpeedY=-ballSpeedY;
 	}
 
 }
@@ -33,9 +44,17 @@ function drawEverything(){
 	//this is left player paddle
 	colorRect(0,210,10,100,'white');
 	//this is the ball
-	colorRect(ballX,100,10,10,'red');
+	colorCircle(ballX,ballY,10,'white')
+	
 }
 
+function colorCircle(centerX,centerY,radius,drawColor){
+	canvasContext.fillStyle = drawColor;
+	canvasContext.beginPath();
+	canvasContext.arc(centerX,centerY,radius,0,Math.PI*2,true);
+	canvasContext.fill();
+
+}
 function colorRect (leftX, topY, width, height, drawColor){
 	canvasContext.fillStyle = drawColor;
 	canvasContext.fillRect(leftX,topY,width, height);
