@@ -45,8 +45,18 @@ function ballReset() {
 	ballY = canvas.height/2;
 }
 
+function computerMovement(){
+	if (ballY > paddle2Y){
+		paddle2Y += 10;
+	}
+	if (ballY < paddle2Y){
+		paddle2Y-=10;
+	}
+}
 
 function moveEverything(){
+	computerMovement();
+
 	ballX = ballX + ballSpeedX;
 	ballY = ballY + ballSpeedY;
 	//Horizontal movement
