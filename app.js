@@ -3,12 +3,15 @@ var canvasContext;
 var ballX = 50;
 var ballSpeedX = 5;
 var ballY = 10;
-var ballSpeedY = 4;
+var ballSpeedY = 5;
 
 var paddle1Y = 250;
 var paddle2Y = 250;
 const PADDLE_HEIGHT = 100;
 const PADDLE_THICKNESS = 10
+
+var player1Score = 0;
+var player2Score = 0;
 
 function calculateMousePos(evt){
 	var rect = canvas.getBoundingClientRect();
@@ -48,9 +51,9 @@ function ballReset() {
 function computerMovement(){
 	var paddle2YCenter = paddle2Y + (PADDLE_HEIGHT/2)
 	if (paddle2YCenter < ballY-35){
-		paddle2Y+= 5;
+		paddle2Y+= 4;
 	} else if (paddle2YCenter > ballY+35){
-		paddle2Y-=5;
+		paddle2Y-=4;
 	}
 }
 
@@ -66,7 +69,9 @@ function moveEverything(){
 			ballY< paddle2Y + PADDLE_HEIGHT){
 			ballSpeedX=-ballSpeedX;
 		} else {
-		ballReset();}
+			ballReset();
+			player1Score++;
+	}
 	}
 	if (ballX < 0){
 		
@@ -74,7 +79,9 @@ function moveEverything(){
 			ballY< paddle1Y + PADDLE_HEIGHT){
 			ballSpeedX=-ballSpeedX;
 		} else {
-		ballReset();}
+			ballReset();
+			player2Score++;
+		}
 	}
 	//Vertical movement
 	if (ballY > canvas.height){
@@ -95,8 +102,11 @@ function drawEverything(){
 	colorRect(canvas.width-PADDLE_THICKNESS,paddle2Y,PADDLE_THICKNESS,PADDLE_HEIGHT,'white');
 	//this is the ball
 	colorCircle(ballX,ballY,10,'white')
+	//score stuff
+	canvasContext.fillText(player1Score,100,100);
+	canvasContext.fillText(player2Score,canvas.width-100,100);
 
-	
+
 	
 }
 
