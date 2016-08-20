@@ -46,11 +46,11 @@ function ballReset() {
 }
 
 function computerMovement(){
-	if (ballY > paddle2Y){
-		paddle2Y += 10;
-	}
-	if (ballY < paddle2Y){
-		paddle2Y-=10;
+	var paddle2YCenter = paddle2Y + (PADDLE_HEIGHT/2)
+	if (paddle2YCenter < ballY-35){
+		paddle2Y+= 5;
+	} else if (paddle2YCenter > ballY+35){
+		paddle2Y-=5;
 	}
 }
 
@@ -95,6 +95,8 @@ function drawEverything(){
 	colorRect(canvas.width-PADDLE_THICKNESS,paddle2Y,PADDLE_THICKNESS,PADDLE_HEIGHT,'white');
 	//this is the ball
 	colorCircle(ballX,ballY,10,'white')
+
+	
 	
 }
 
