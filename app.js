@@ -6,18 +6,27 @@ window.onload = function(){
 	console.log("Asuh, World")
 	canvas = document.getElementById('gameCanvas');
 	canvasContext = canvas.getContext('2d')
-	setInterval(drawEverything, 50);
+
+	var framesPerSecond = 60
+	setInterval(function(){
+		moveEverything();
+		drawEverything();
+	}, 1000/framesPerSecond);
 
 }
 
-function drawEverything(){
-	ballX = ballX + 1;
 
-	console.log(ballX);
+function moveEverything(){
+	ballX = ballX + 5;	
+}
+function drawEverything(){
+
+
+	
 	canvasContext.fillStyle = 'black';
 	canvasContext.fillRect(0,0,canvas.width,canvas.height);
 	canvasContext.fillStyle = 'white';
-	canvasContext.fillRect(225,210,200,200);
+	canvasContext.fillRect(0,210,10,100);
 	canvasContext.fillStyle = 'red';
-	canvasContext.fillRect(ballX,200,50,25);
+	canvasContext.fillRect(ballX,100,10,10);
 }
